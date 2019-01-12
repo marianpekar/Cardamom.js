@@ -2,7 +2,8 @@
     function Cardamom(){
         var Cardamom = {};
         
-        // Privates
+        // Construction
+        // Private
         var Card = function(color, value) {
             this.color = color;
             this.value = value;
@@ -12,58 +13,79 @@
             this.cards = cards;
         }
 
-        // Construction
-        Cardamom.CreateCard = function(color, value) {
+        var Hand = function(cards) {
+            this.cards = cards;
+        }
+
+        var Table = function(decks,cards) {
+            this.decks = decks;
+            this.cards = cards;
+        }
+
+        var CreateCard = function(color, value) {
             return new Card(color, value);
         }
 
+        // Public
         Cardamom.CreateDeck = function(colors, values) {
             var deck = new Deck([]);
 
             for(col = 1; col <= colors; col++) {
                 for(val = 1; val <= values; val++) {
-                    deck.cards.push(this.CreateCard(col,val));
+                    deck.cards.push(CreateCard(col,val));
                 }
             }
             
             return deck;
         }
 
-        
+        Cardamom.CreateTable = function(decks) {
+            return new Table(decks,[]);
+        }
+
+        Cardamom.CreateHand = function() {
+            return new Hand([]);
+        }
+
         // Manipulation
-        Cardamom.PushCard = function(deck, card) {
-            deck.cards.push(card);
-        }
-
-        Cardamom.PopCard = function(deck, index) {
-            var card = deck.cards[index];
-            deck.cards.splice(index,1);
-            return card;
-        }
-
-        Cardamom.MergeDecks = function(deck, decks) {
-            for(d = 0; d < decks.length; d++) {
-                for(c = 0; c < decks[d].cards.length; c++) {
-                    deck.cards.push(decks[d].cards[c]);
+        // Public        
+        Cardamom.Merge = function(obj, objs) {
+            for(o = 0; o < objs.length; o++) {
+                for(c = 0; c < objs[o].cards.length; c++) {
+                    obj.cards.push(objs[o].cards[c]);
                 }
 
-                while(decks[d].cards.length > 0) {
-                    decks[d].cards.pop();
+                while(objs[o].cards.length > 0) {
+                    objs[o].cards.pop();
                 }  
             }
         }
 
-        Cardamom.ShuffleDeck = function(deck) {
-            //TODO: schuffle cards in deck
+        Cardamom.Shuffle = function(obj) {
+            //TODO
         }
 
-        Cardamom.SplitDeck = function(deck, index) {
-            //TODO: take out from deck.cards array from given index to end and return this new array as a new deck
+        Cardamom.Split = function(obj, index) {
+            //TODO
+        }
+
+        Cardamom.MoveCardsFromTop = function(src, dest, count) {
+            //TODO
+        };
+
+        Cardamom.MoveCardsFromBottom = function(src, dest, count)  {
+            //TODO
+        };
+
+        Cardamom.MoveCardsFromIndex = function(src, dest, count, index) {
+            //TODO
         }
 
         // Comparison
+        // Private
         this.comparers = { COLOR:"color", VALUE:"value", BOTH:"both", BIGGER:"bigger", SMALLER:"smaller", NEXT:"next", PREVIOUS:"previous" };
 
+        // Public
         Cardamom.compareCards = function(cardOne, cardTwo, comparer) {
             if(comparer == comparers.COLOR) {
                 return cardOne.color == cardTwo.color;     
@@ -101,6 +123,3 @@
       window.Cardamom = Cardamom();
     }
 })(window); 
-
-card1 = Cardamom.CreateCard(1,1);
-card2 = Cardamom.CreateCard(1,1);
