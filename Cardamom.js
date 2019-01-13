@@ -85,14 +85,14 @@
         }
 
         // Private
-        this.sides = { TOP:"top", BOTTOM:"bottom"};
+        this.sides = { top:"top", bottom:"bottom"};
 
         // Public
         Cardamom.MoveCard = function(src, dest, from, to) {
-            if(from == sides.TOP) var cardToMove = src.cards.shift();
-            else if (from == sides.BOTTOM) var cardToMove = src.cards.pop();           
-            if(to == sides.TOP) dest.cards.unshift(cardToMove);
-            else if (to == sides.BOTTOM) dest.cards.push(cardToMove);
+            if(from == sides.top) var cardToMove = src.cards.shift();
+            else if (from == sides.bottom) var cardToMove = src.cards.pop();           
+            if(to == sides.top) dest.cards.unshift(cardToMove);
+            else if (to == sides.bottom) dest.cards.push(cardToMove);
         }
 
         Cardamom.MoveCards = function(src, dest, from, to, count) {
@@ -103,11 +103,11 @@
 
         Cardamom.MoveCardsFromIndex = function(src, dest, to, count, index) {
             var cardsToMove = src.cards.splice(index,count);
-            if (to == sides.TOP) cardsToMove.reverse();
+            if (to == sides.top) cardsToMove.reverse();
 
             for(i = 0; i < cardsToMove.length; i++) {
-                if (to == sides.TOP) dest.cards.unshift(cardsToMove[i]);
-                else if (to == sides.BOTTOM) dest.cards.push(cardsToMove[i]);
+                if (to == sides.top) dest.cards.unshift(cardsToMove[i]);
+                else if (to == sides.bottom) dest.cards.push(cardsToMove[i]);
             }
         }
 
@@ -117,35 +117,35 @@
 
         // Comparison
         // Private
-        this.comparers = { COLOR:"color", VALUE:"value", BOTH:"both", BIGGER:"bigger", SMALLER:"smaller", NEXT:"next", PREVIOUS:"previous" };
+        this.compare = { color:"color", value:"value", both:"both", bigger:"bigger", smaller:"smaller", next:"next", previous:"previous" };
 
         // Public
         Cardamom.compareCards = function(cardOne, cardTwo, comparer) {
-            if(comparer == comparers.COLOR) {
+            if(comparer == compare.color) {
                 return cardOne.color == cardTwo.color;     
             }
             
-            if(comparer == comparers.VALUE) {
+            if(comparer == compare.value) {
                 return cardOne.value == cardTwo.value;     
             }
             
-            if(comparer == comparers.BOTH) {
+            if(comparer == compare.both) {
                 return (cardOne.color == cardTwo.color) && (cardOne.value == cardTwo.value);     
             }
             
-            if(comparer == comparers.BIGGER) {
+            if(comparer == compare.bigger) {
                 return cardOne.value > cardTwo.value;     
             }
             
-            if(comparer == comparers.SMALLER) {
+            if(comparer == compare.smaller) {
                 return cardOne.value < cardTwo.value;     
             }
             
-            if(comparer == comparers.NEXT) {
+            if(comparer == compare.next) {
                 return (cardOne.value - 1) == cardTwo.value && (cardOne.color == cardTwo.color);     
             }
             
-            if(comparer == comparers.PREVIOUS) {
+            if(comparer == compare.previous) {
                 return (cardOne.value + 1) == cardTwo.value && (cardOne.color == cardTwo.color);     
             }
         }
