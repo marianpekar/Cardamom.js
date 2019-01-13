@@ -62,23 +62,57 @@
         }
 
         Cardamom.Shuffle = function(obj) {
-            //TODO
+            var shuffled = [], n = obj.cards.length, i;
+            while(n) {
+                i = Math.floor(Math.random() * obj.cards.length);
+
+                if(i in obj.cards) {
+                    shuffled.push(obj.cards[i]);
+                    delete obj.cards[i];
+                    n--;
+                }
+            }
+            obj.cards = shuffled;
+        }
+
+        Cardamom.Flip = function(obj) {
+            obj.cards.reverse();
         }
 
         Cardamom.Split = function(obj, index) {
-            //TODO
+            if(obj.constructor.name === "Deck") return new Deck(obj.cards.splice(index, obj.cards.length - index));
+            if(obj.constructor.name === "Hand") return new Hand(obj.cards.splice(index, obj.cards.length - index));
         }
 
-        Cardamom.MoveCardsFromTop = function(src, dest, count) {
-            //TODO
+        // Private
+        this.sides = { TOP:"top", BOTTOM:"bottom"};
+
+        // Public
+        Cardamom.MoveCard = function(src, dest, from, to) {
+            if(from == sides.TOP) var cardToMove = src.cards.shift();
+            else if (from == sides.BOTTOM) var cardToMove = src.cards.pop();           
+            if(to == sides.TOP) dest.cards.unshift(cardToMove);
+            else if (to == sides.BOTTOM) dest.cards.push(cardToMove);
+        }
+
+        Cardamom.MoveCards = function(src, dest, from, to, count) {
+            for(var i = 0; i < count; i++) {
+                Cardamom.MoveCard(src,dest,from,to);
+            };          
         };
 
-        Cardamom.MoveCardsFromBottom = function(src, dest, count)  {
-            //TODO
-        };
+        Cardamom.MoveCardsFromIndex = function(src, dest, to, count, index) {
+            var cardsToMove = src.cards.splice(index,count);
+            if (to == sides.TOP) cardsToMove.reverse();
 
-        Cardamom.MoveCardsFromIndex = function(src, dest, count, index) {
-            //TODO
+            for(i = 0; i < cardsToMove.length; i++) {
+                if (to == sides.TOP) dest.cards.unshift(cardsToMove[i]);
+                else if (to == sides.BOTTOM) dest.cards.push(cardsToMove[i]);
+            }
+        }
+
+        Cardamom.GetRandomCardIndex = function (obj) {
+            return Math.floor(Math.random() * obj.cards.length + 1);
         }
 
         // Comparison
@@ -115,6 +149,9 @@
                 return (cardOne.value + 1) == cardTwo.value && (cardOne.color == cardTwo.color);     
             }
         }
+
+        // Evaluation
+        // Public
   
         return Cardamom;
     }
