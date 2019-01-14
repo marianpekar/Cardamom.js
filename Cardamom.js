@@ -176,7 +176,7 @@
             return overallValue < value;
         }
 
-        Cardamom.AreValuesEqual = function(obj) {
+        Cardamom.AreAllValuesEqual = function(obj) {
             for(var i = 0; i < obj.cards.length - 1; i++) {
                 if(obj.cards[i].value != obj.cards[i + 1].value)
                     return false;
@@ -184,7 +184,7 @@
             return true;
         }
         
-        Cardamom.AreValuesEqualTo = function(obj, value) {
+        Cardamom.AreAllValuesEqualTo = function(obj, value) {
             for(var i = 0; i < obj.cards.length - 1; i++) {
                 if(obj.cards[i].value != value)
                     return false;
@@ -192,7 +192,7 @@
             return true;
         }
 
-        Cardamom.AreColorsEqual = function(obj) {
+        Cardamom.AreAllColorsEqual = function(obj) {
             for(var i = 0; i < obj.cards.length; i++) {
                 if(obj.cards[i].color != obj.cards[i + 1].color)
                     return false;
@@ -200,7 +200,7 @@
             return true;
         }
 
-        Cardamom.AreColorsEqualTo = function(obj, color) {
+        Cardamom.AreAllColorsEqualTo = function(obj, color) {
             for(var i = 0; i < obj.cards.length; i++) {
                 if(obj.cards[i].color != color)
                     return false;
