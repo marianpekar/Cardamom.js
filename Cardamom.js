@@ -231,6 +231,20 @@
             }
             return false;
         }
+
+        // Counting
+        // Public
+        Cardamom.CountCardsOfColor = function(obj, color) {
+            // TODO
+        }
+
+        Cardamom.CountCardsOfValue = function(obj, value) {
+            // TODO
+        }
+
+        Cardamom.CountCardsEqualTo = function(obj, color, value) {
+            // TODO
+        }
   
         return Cardamom;
     }
