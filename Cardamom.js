@@ -28,14 +28,24 @@
 
         // Public
         Cardamom.CreateDeck = function(colors, values) {
-            var deck = new Deck([]);
-
-            for(col = 1; col <= colors; col++) {
-                for(val = 1; val <= values; val++) {
+            var deck = new Deck([]); 
+               
+            for(var col = 1; col <= colors; col++) {
+                for(var val = 1; val <= values; val++) {
                     deck.cards.push(CreateCard(col,val));
                 }
-            }
-            
+            }            
+            return deck;
+        }
+
+        Cardamom.CreateDeckWithOffset = function(colors, values, startColorsAt, startValuesAt) {
+            var deck = new Deck([]);
+
+            for(var col = startColorsAt; col < colors + startColorsAt; col++) {
+                for(var val = startValuesAt; val < values + startValuesAt; val++) {
+                    deck.cards.push(CreateCard(col,val));
+                }
+            }        
             return deck;
         }
 
