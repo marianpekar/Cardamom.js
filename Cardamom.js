@@ -120,7 +120,7 @@
         this.compare = { color:"color", value:"value", both:"both", bigger:"bigger", smaller:"smaller", next:"next", previous:"previous" };
 
         // Public
-        Cardamom.compareCards = function(cardOne, cardTwo, comparer) {
+        Cardamom.CompareCards = function(cardOne, cardTwo, comparer) {
             if(comparer == compare.color) {
                 return cardOne.color == cardTwo.color;     
             }
