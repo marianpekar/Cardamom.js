@@ -152,6 +152,75 @@
 
         // Evaluation
         // Public
+        Cardamom.IsSumOver = function(obj, value) {
+            var overallValue = 0;
+            for(i = 0; i < obj.cards.length; i++)
+                overallValue += obj.cards[i].value;
+            return overallValue > value;
+        }
+
+        Cardamom.IsSumUnder = function(obj, value) {
+            var overallValue = 0;
+            for(var i = 0; i < obj.cards.length; i++)
+                overallValue += obj.cards[i].value;
+            return overallValue < value;
+        }
+
+        Cardamom.AreValuesEqual = function(obj) {
+            for(var i = 0; i < obj.cards.length - 1; i++) {
+                if(obj.cards[i].value != obj.cards[i + 1].value)
+                    return false;
+            }
+            return true;
+        }
+        
+        Cardamom.AreValuesEqualTo = function(obj, value) {
+            for(var i = 0; i < obj.cards.length - 1; i++) {
+                if(obj.cards[i].value != value)
+                    return false;
+            }
+            return true;
+        }
+
+        Cardamom.AreColorsEqual = function(obj) {
+            for(var i = 0; i < obj.cards.length; i++) {
+                if(obj.cards[i].color != obj.cards[i + 1].color)
+                    return false;
+            }
+            return true;
+        }
+
+        Cardamom.AreColorsEqualTo = function(obj, color) {
+            for(var i = 0; i < obj.cards.length; i++) {
+                if(obj.cards[i].color != color)
+                    return false;
+            }
+            return true;
+        }
+
+        Cardamom.HasAtLeastOne = function(obj, color, value) {
+            for(var i = 0; i < obj.cards.length; i++) {
+                if (obj.cards[i].color == color && obj.cards[i].value == value)
+                    return true;
+            }
+            return false;
+        }
+
+        Cardamom.HasAtLeastOneOfColor = function (obj, color) {
+            for(var i = 0; i < obj.cards.length; i++) {
+                if (obj.cards[i].color == color)
+                    return true;
+            }
+            return false;
+        }
+
+        Cardamom.HasAtLeastOneOfValue = function (obj, value) {
+            for(var i = 0; i < obj.cards.length; i++) {
+                if (obj.cards[i].value == value)
+                    return true;
+            }
+            return false;
+        }
   
         return Cardamom;
     }
