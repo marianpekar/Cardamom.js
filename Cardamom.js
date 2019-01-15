@@ -234,6 +234,10 @@
 
         // Counting
         // Public
+        Cardamom.CountCards = function(obj) {
+            return obj.cards.length;
+        }
+
         Cardamom.CountCardsOfColor = function(obj, color) {
             var counter = 0;
             for(var i = 0; i < obj.cards.length; i++) {
