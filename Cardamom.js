@@ -176,6 +176,13 @@
             return overallValue < value;
         }
 
+        Cardamom.IsSumEqual = function(obj, value) {
+            var overallValue = 0;
+            for(var i = 0; i < obj.cards.length; i++)
+                overallValue += obj.cards[i].value;
+            return overallValue == value;
+        }
+
         Cardamom.AreAllValuesEqual = function(obj) {
             for(var i = 0; i < obj.cards.length - 1; i++) {
                 if(obj.cards[i].value != obj.cards[i + 1].value)
@@ -234,6 +241,13 @@
 
         // Counting
         // Public
+        Cardamom.GetSumOfValues = function (obj) {
+            var overallValue = 0;
+            for(i = 0; i < obj.cards.length; i++)
+                overallValue += obj.cards[i].value;
+            return overallValue;
+        }
+
         Cardamom.CountCards = function(obj) {
             return obj.cards.length;
         }
