@@ -248,6 +248,14 @@
             return overallValue;
         }
 
+        Cardamom.GetSumOfColors = function(obj, color) {
+            var overallValue = 0;
+            for(i = 0; i < obj.cards.length; i++)
+                if(obj.cards[i].color == color)
+                    overallValue += obj.cards[i].value;
+            return overallValue;
+        }
+
         Cardamom.GetColorOfCard = function (obj, index) {
             return obj.cards[index].color;
         }
