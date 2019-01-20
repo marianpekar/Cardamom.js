@@ -130,8 +130,8 @@ betInputNumber.setAttribute("type","number");
 placeBetButton = document.createElement("button");
 placeBetButton.innerHTML = "Place Bet";
 
-document.body.appendChild(playerCardsDiv);
 document.body.appendChild(dealerCardsDiv);
+document.body.appendChild(playerCardsDiv);
 document.body.appendChild(controlsDiv);
 document.body.appendChild(infoLabel);
 
