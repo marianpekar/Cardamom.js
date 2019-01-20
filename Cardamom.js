@@ -239,7 +239,7 @@
             return false;
         }
 
-        // Counting
+        // Getting
         // Public
         Cardamom.GetSumOfValues = function (obj) {
             var overallValue = 0;
@@ -248,6 +248,16 @@
             return overallValue;
         }
 
+        Cardamom.GetColorOfCard = function (obj, index) {
+            return obj.cards[index].color;
+        }
+
+        Cardamom.GetValueOfCard = function (obj, index) {
+            return obj.cards[index].value;
+        }
+
+        // Counting
+        // Public
         Cardamom.CountCards = function(obj) {
             return obj.cards.length;
         }
