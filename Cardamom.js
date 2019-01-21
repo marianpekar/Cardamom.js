@@ -121,10 +121,6 @@
             }
         }
 
-        Cardamom.GetRandomCardIndex = function (obj) {
-            return Math.floor(Math.random() * obj.cards.length + 1);
-        }
-
         // Comparison
         // Private
         this.compare = { color:"color", value:"value", both:"both", bigger:"bigger", smaller:"smaller", next:"next", previous:"previous" };
@@ -262,6 +258,10 @@
 
         Cardamom.GetValueOfCard = function (obj, index) {
             return obj.cards[index].value;
+        }
+
+        Cardamom.GetRandomCardIndex = function (obj) {
+            return Math.floor(Math.random() * obj.cards.length + 1);
         }
 
         // Counting
