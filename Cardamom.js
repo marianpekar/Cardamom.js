@@ -264,6 +264,10 @@
             return Math.floor(Math.random() * obj.cards.length + 1);
         }
 
+        Cardamom.GetCardOnIndex = function (obj, index) {
+            return obj.cards[index];
+        }
+
         // Counting
         // Public
         Cardamom.CountCards = function(obj) {
