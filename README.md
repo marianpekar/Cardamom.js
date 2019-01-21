@@ -6,7 +6,7 @@ All card games are same! Well, they're not actually. However, they have so much 
 
 Let's say you have a game with two players which get 4 cards from a shuffled standard 52 cards deck and then one card goes on table. With Cardamom.js included you can do it like this.
 
-```javscript
+```javascript
 let deck = Cardamom.CreateDeck(4,13);
 Cardamom.Shuffle(deck);
 
@@ -21,14 +21,14 @@ Cardamom.MoveCard(deck,table,sides.top,sides.top);
 
 And what if you'd like to know if player one has bigger sum of values of cards that have the same color as the card on table? Two lines of code for that.
 
-```javscript
+```javascript
 let card_on_table_color =  Cardamom.GetColorOfCard(table,0);
 Cardamom.GetSumOfColors(player_one,card_on_table_color) > Cardamom.GetSumOfColors(player_two,card_on_table_color);
 ```
 
 Now you'd want to take all cards and put them back to the bottom of your deck. With Cardamom.js you can handle it with a single line.
 
-```javscript
+```javascript
 Cardamom.Merge(deck,[table,player_one,player_two]);
 ```
 
