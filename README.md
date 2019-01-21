@@ -34,4 +34,4 @@ Cardamom.Merge(deck,[table,player_one,player_two]);
 
 And that's it! For just an eleven lines of code quite a nice card game, right? In case you're interested to see a litle bit more complex example, check out **Vingt-et-un (Twenty-One) in the examples folder**. 
 
-Read out what all you can do with Cardamom.js you in Docs here.
+Read out what all you can do with Cardamom.js [in Docs here](https://marianpekar.github.io/Cardamom.js/).
