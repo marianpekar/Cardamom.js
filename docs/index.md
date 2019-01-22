@@ -2,11 +2,11 @@
 
 As you may have read already in [README.md on GitHub](https://github.com/marianpekar/Cardamom.js/blob/master/README.md), Cardamom.js is a JavaScript library that provides all (or at least the most) of the logic you'll be needing while building a card game, whether it's based on rules of an existing card game like Black Jack, Texas Hold'em or Rummy or on your own. 
 
-The only assumption is you'll be working with cards that follow the color&value pattern and yes, you can have Jokers too.
+The only assumption is you'll be *working with cards that follow the color&value pattern* and yes, you can have Jokers too.
 
 The goal was to provide intuitive, easy to use library with well-documented API so as simple and readable source code. On this page you can read out what all you can do with Cardamom.js.
 
-Library is divided into six sections and here the chapters after 'Instalation' cover them. They are: 
+Cardamom.js is divided into six sections and here the chapters after 'Instalation' cover them. They are: 
 
 * Construction
 * Manipulation
@@ -17,7 +17,7 @@ Library is divided into six sections and here the chapters after 'Instalation' c
 
 ## Getting Started
 
-Let's say you have a game with two players which get 4 cards from a shuffled standard 52 cards deck and then one card goes on table. With Cardamom.js included you can do it like this.
+Let's say you have a game with two players, both players get 4 cards each from a shuffled standard 52 cards deck and then one card goes on table. With Cardamom.js you can do it like this.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4,13);
@@ -32,7 +32,7 @@ let table = Cardamom.CreateTable();
 Cardamom.MoveCard(deck,table,sides.top,sides.top);
 ```
 
-And what if you'd like to know if player one has bigger sum of values of cards that have the same color as the card on table? Two lines of code for that.
+And what if you'd like to know if sum of values of cards that player one has with the same color as the color of card on table is bigger those that has player two? Two lines of code for that.
 
 ```javascript
 let card_on_table_color =  Cardamom.GetColorOfCard(table,0);
@@ -45,11 +45,11 @@ Now you'd want to take all cards and put them back to the bottom of your deck. W
 Cardamom.Merge(deck,[table,player_one,player_two]);
 ```
 
-And that's it! For just an eleven lines of code quite a nice card game, right? In case you want to see more complex example, [here is a fully playable and well-commented Vingt-et-un (Twenty-One) card game that follows MVC pattern](https://github.com/marianpekar/Cardamom.js/tree/master/examples/Vingt-et-un).
+And that's it! Quite a nice little card game for just an eleven lines of code, right? But there's more. In case you want to see more complex example, [check out this fully playable and well-commented Vingt-et-un (Twenty-One) card game that follows MVC pattern](https://github.com/marianpekar/Cardamom.js/tree/master/examples/Vingt-et-un).
 
-## Instalation
+## Setting up
 
-Instalation is pretty standard, [download Cardamom.js](https://raw.githubusercontent.com/marianpekar/Cardamom.js/master/Cardamom.js) and simply inject it into your HTML page.
+Process of setting up library is pretty standard, [download Cardamom.js](https://raw.githubusercontent.com/marianpekar/Cardamom.js/master/Cardamom.js) and simply inject it into your HTML page.
 
 ```html
 <!DOCTYPE html>
@@ -67,31 +67,33 @@ Instalation is pretty standard, [download Cardamom.js](https://raw.githubusercon
 
 Minified version [Cardamom.min.js](https://raw.githubusercontent.com/marianpekar/Cardamom.js/master/Cardamom.min.js) is provided for you as well. 
 
+Thanks to [CSS-And-Js-Minifier by GGG-KILLER](https://github.com/GGG-KILLER/CSS-And-Js-Minifier).
+
 ## Construction
 
-Typically you start a card game with objects you'll be needing for play. In Cardamom.js those could be **Deck**, ***Hand*** (Player) or **Table**.
+Typically you start building a card game with objects you'll be needing for play. In Cardamom.js those could be **Deck**, **Hand** (Player) or **Table**.
 
 ### Cardamom.CreateDeck(colors, values)
 
-Create new Deck of n colors with m values for each color. 
+Create new Deck of n **colors** with m **values** for each color. 
 
 ```javascript
 let deck = Cardamom.CreateDeck(4, 13);
 ```
 
-Creates a 52 cards deck of 4 colours, 13 values for each. 
+Creates a 52 cards deck of 4 colours, 13 values for each color. 
 
 *Note: in Cardamom.js color is an abstract concept represented by an integer.*
 
 ### Cardamom.CreateDeckWithOffset(colors, values, startColorsAt, startValuesAt)
 
-To get standard 52 cards deck you'd use this function instead, because values of this type of deck starts at 2.
+To get standard 52 cards deck you'd rather use this function instead, because values of this type of deck starts at 2.
 
 ```javascript
-let deck = Cardamom.CreateDeckWithOffset(4, 13, 1, 2);
+let standard_deck = Cardamom.CreateDeckWithOffset(4, 13, 1, 2);
 ```
 
-This will do the trick. Colors would be 1,2,3,4 and values 2, 3, 4 ... 12, 13. 
+This will do the trick. Colors will be 1,2,3,4 and values 2, 3, 4 ... 12, 13. 
 
 ### Cardamom.CreateHand() 
 
@@ -101,11 +103,13 @@ Use this method to create a player. In the next chapter you'll see how easily yo
 let player = Cardamom.CreateHand();
 ```
 
-Hand has actually the same structure as deck, on this level of abstraction there is actually no difference between deck and player in every card game - both just hold some cards or none cards, yet still may exist.
+Hand has actually the same structure as deck, on this level of abstraction there is no difference between deck and player - both just hold some cards or none cards, yet still may exist as an empty container.
 
 ### Cardamom.CreateTable(decks)
 
-This object is just a little bit diffent than player or deck. It has to be created with at least deck, yet it also has a cards array as other objects. In the next chapter you'll see that you could move cards among decks, players and tables in the same fashion.
+This object is just a little bit diffent than hand and deck. It has to be created with at least one deck, yet it also has a cards array same as hand and deck objects. 
+
+In the next chapter you'll see that you could move cards among decks, players and tables in the same fashion.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4, 13);
@@ -114,7 +118,7 @@ let player = Cardamom.CreateTable(deck);
 
 ## Manipulation
 
-This section associates methods for moving cards among decks, players and tables or shuffling, splitting and merging them together.
+This section associates methods for moving cards among decks, players and tables and shuffling, splitting and merging them together.
 
 ### Cardamom.Merge(obj, objs)
 
@@ -128,14 +132,18 @@ let deck_3 = Cardamom.CreateDeckWithOffset(1,13,4,2);
 Cardamom.Merge(deck_1,[deck_2,deck_3]);
 ```
 
+In this example after execution of merge method deck_1 will have all cards, deck_2 and deck_3 remains with empty cards arrays.
+
 ### Cardamom.Shuffle(obj) 
 
 Simply shuffle cards in passed object. Typically a deck, but it could be player or table as well.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4, 13);
-Cardamom.CreateDeck(deck);
+Cardamom.Shuffle(deck);
 ```
+
+*Note: if passed object is a table, this method shuffles only cards in cards array, not in associated decks.*
 
 ### Cardamom.Flip(obj)
 
@@ -146,11 +154,11 @@ let deck = Cardamom.CreateDeck(4, 13);
 Cardamom.Flip(deck);
 ```
 
-In many card games there are typically two decks. Players take cards from top of one and pile cards one on another, when there's no cards left in the first deck, they flip the pile that becomes this first deck and game goes on.
+In many card games there are typically two decks. Players take cards from top of one deck and pile cards one on another which builds a second deck, when there's no card left in the first deck, they flip the pile and use second deck as the first one before. 
 
 ### Cardamom.Split(obj, index)
 
-This method splits cards in passed object from given index and returns this part (from index to the end) as a **new object that could be either deck or hand**. 
+This method splits cards in passed object at given index and returns this part (from index to the end) as a **new object that could be either deck or hand**. 
 
 ```javascript
 let deck = Cardamom.CreateDeck(4, 13);
@@ -178,7 +186,7 @@ Both players got one card from top of the deck.
 
 ### Cardamom.MoveCards(src, dest, from, to, count)
 
-Works same as MoveCard method, but you have to also set how many cards you want to move.
+Works same as MoveCard method, but you have to also specify how many cards you want to move.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4, 13);
@@ -193,7 +201,7 @@ Both players got four cards from top of the deck.
 
 ### Cardamom.MoveCardsFromIndex(src, dest, to, count, index)
 
-This one is a little bit trickier. You can move **count** of cards from **s**ou**rc**e object that starts on **index** and put them **to** the top or bottom of **dest**ionation object. 
+This one is a little bit trickier. You can move specified **count** of cards from **s**ou**rc**e object that starts on **index** and put them **to** the top or bottom of **dest**ionation object. 
 
 ```javascript
 let deck_1 = Cardamom.CreateDeck(4, 13);
@@ -202,7 +210,7 @@ let deck_2 = Cardamom.CreateDeck(4, 13);
 Cardamom.MoveCardsFromIndex(deck_1, deck_2, sides.top,4,2);
 ```
 
-First two cards from the top of deck_1 has been skipped and then four cards was moved on top of deck_2.
+First two cards from the top of deck_1 has been skipped and then four cards have been moved on top of deck_2.
 
 ## Comparison
 
@@ -221,7 +229,7 @@ Comparers are:
 * compare.next
 * compare.previous
 
-To see how it works try in on the first and the second card from standard 52-cards deck.
+To see how it works try in on the first and the second card from standard 52 cards deck.
 
 ```javascript
 let standard_deck = Cardamom.CreateDeckWithOffset(4, 13, 1, 2);
@@ -246,7 +254,7 @@ In this section you can find methods that also returns boolean values, but inste
 
 ### Cardamom.IsSumOver(obj, value)
 
-Add values of all cards in object and return true if the result is bigger than passed value.
+Add values of all cards in passed object and return true if the result is bigger than passed value.
 
 ```javascript
 let standard_deck = Cardamom.CreateDeckWithOffset(4, 13, 1, 2);
@@ -266,7 +274,7 @@ I guess you already know why both examples resulted in false. Yes, sum of values
 
 ### Cardamom.IsSumEqual(obj, value)
 
-Returns true only when sum of values of all cards is equal to passed value.
+Returns true only when sum of values of all cards in object is equal to passed value.
 
 ```javascript
 let standard_deck = Cardamom.CreateDeckWithOffset(4, 13, 1, 2);
@@ -290,7 +298,7 @@ Returns true if all values of cards in object are equal to passed value.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4,1);
-Cardamom.AreAllValuesEqual(deck,1) // true
+Cardamom.AreAllValuesEqualTo(deck,1) // true
 ```
 
 ### Cardamom.AreAllColorsEqual(obj)
@@ -336,7 +344,7 @@ Cardamom.HasAtLeastOneOfColor(deck,5);  // false
 
 ### Cardamom.HasAtLeastOneOfValue(obj, value) 
 
-Returns true if object has at least one card that match passed value.
+Returns true if object has at least one card that matches passed value.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4,13);
@@ -346,7 +354,7 @@ Cardamom.HasAtLeastOneOfValue(deck,14);  // false
 
 ## Getting 
 
-In this section you can find methods that return sum of values of all cards in object, value or color of card in object at index or random card index for instance.
+In this section you can find methods that return sum of values of all cards in object, value or color of card in object at specified index or random card index for example.
 
 ### Cardamom.GetSumOfValues(obj) 
 
@@ -368,7 +376,7 @@ let sum_of_values_with_color_1 = Cardamom.GetSumOfValuesWithColor(standard_deck,
 
 ### Cardamom.GetColorOfCard(obj, index)
 
-Returns color of card in object on index.
+Returns color of card in object at specified index.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4,13);
@@ -377,7 +385,7 @@ let color_at_index_0 = Cardamom.GetColorOfCard(deck, 0) // = 1
 
 ### Cardamom.GetValueOfCard(obj, index)
 
-Returns value of card in object on index.
+Returns value of card in object at specified index.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4,13);
@@ -395,18 +403,22 @@ let random_card_index =  Cardamom.GetRandomCardIndex(deck) // == number from 0 t
 
 ### Cardamom.GetCardOnIndex(obj, index)
 
-Returns **new Card object** from passed object at index.
+Returns **Card object** from passed object at specified index.
 
 ```javascript
 let standard_deck = Cardamom.CreateDeckWithOffset(4, 13, 1, 2);
 let card = Cardamom.GetCardOnIndex(standard_deck, 0) // = Card { color: 1, value: 2 }
 ```
 
-**CAUTION: You probably don't want to use GetCardOnIndex like this if not using with CompareCards method from 'Comparison' section.** It returns a copy of the card while original card remains in given object. 
+**CAUTION: You probably don't want to use GetCardOnIndex just like this if not using with CompareCards method from 'Comparison' section.** It returns a copy of the card while original card remains in given object.
+
+You also may have noticed there is nothing like CreateCard method in the Construction section and only CreateDeck method actually making new cards.
+
+The idea is card should always originate from a deck, it could be moved among decks, players or tables, but it always started as a part of a deck.
 
 ## Counting
 
-In the last section of Cardamom.js are methods that return count of cards, count of cards that match either color, value of both of them.
+In the last section of Cardamom.js are methods that return count of cards and count of cards that match either with color, value of with both of them.
 
 ### Cardamom.CountCards(obj) 
 
@@ -419,7 +431,7 @@ let count = Cardamom.CountCards(deck) // = 52;
 
 ### Cardamom.CountCardsOfColor(obj, color) 
 
-Returns count of cards that match color.
+Returns count of cards that match with color.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4,13);
@@ -428,7 +440,7 @@ let count_cards_of_color_1 = Cardamom.CountCardsOfColor(deck,1) // = 13;
 
 ### Cardamom.CountCardsOfValue(obj, value) 
 
-Returns count of cards that match value.
+Returns count of cards that match with value.
 
 ```javascript
 let deck = Cardamom.CreateDeck(4,13);
