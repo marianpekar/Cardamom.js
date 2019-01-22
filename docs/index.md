@@ -6,7 +6,7 @@ The only assumption is you'll be working with cards that follow the color&value 
 
 The goal was to provide intuitive, easy to use library with well-documented API so as simple and readable source code. On this page you can read out what all you can do with Cardamom.js.
 
-Library is divided into six sections and here the chapters after 'Instalation' follow them. They are: 
+Library is divided into six sections and here the chapters after 'Instalation' cover them. They are: 
 
 * Construction
 * Manipulation
@@ -116,7 +116,7 @@ let player = Cardamom.CreateTable(deck);
 
 This section associates methods for moving cards among decks, players and tables or shuffling, splitting and merging them together.
 
-### Cardamom.Merge(obj,objs)
+### Cardamom.Merge(obj, objs)
 
 Put all cards from array of objects provided as the second argument to the object provided as the first argument. They'll be placed at the end in same order as in the passed array.
 
@@ -161,7 +161,7 @@ Return type doesn't have to be specified, it will be the same as the type of pas
 
 *Note: doesn't work with tables*
 
-### Cardamom.MoveCard(src,dest,from,to)
+### Cardamom.MoveCard(src, dest, from, to)
 
 This method move one card from **s**ou**rc**e object to **dest**ionation object. You have to specify whether you want to move card **from** top **to** top, top to bottom, bottom to top or bottom to bottom.
 
@@ -176,7 +176,7 @@ Cardamom.MoveCard(deck, player_2, sides.top, sides.bottom);
 
 Both players got one card from top of the deck.
 
-### Cardamom.MoveCards(src,dest,from,to,count)
+### Cardamom.MoveCards(src, dest, from, to, count)
 
 Works same as MoveCard method, but you have to also set how many cards you want to move.
 
@@ -191,7 +191,7 @@ Cardamom.MoveCards(deck, player_2, sides.top, sides.bottom,4);
 
 Both players got four cards from top of the deck.
 
-### Cardamom.MoveCardsFromIndex(src,dest,to,count,index)
+### Cardamom.MoveCardsFromIndex(src, dest, to, count, index)
 
 This one is a little bit trickier. You can move **count** of cards from **s**ou**rc**e object that starts on **index** and put them **to** the top or bottom of **dest**ionation object. 
 
@@ -402,7 +402,7 @@ let standard_deck = Cardamom.CreateDeckWithOffset(4, 13, 1, 2);
 let card = Cardamom.GetCardOnIndex(standard_deck, 0) // = Card { color: 1, value: 2 }
 ```
 
-**CAUTION: You probably don't want to use GetCardOnIndex like this.** It returns a copy of the card while original card remains in given object. 
+**CAUTION: You probably don't want to use GetCardOnIndex like this if not using with CompareCards method from 'Comparison' section.** It returns a copy of the card while original card remains in given object. 
 
 ## Counting
 
