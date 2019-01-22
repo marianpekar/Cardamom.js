@@ -244,7 +244,7 @@
             return overallValue;
         }
 
-        Cardamom.GetSumOfColors = function(obj, color) {
+        Cardamom.GetSumOfValuesWithColor = function(obj, color) {
             var overallValue = 0;
             for(i = 0; i < obj.cards.length; i++)
                 if(obj.cards[i].color == color)
