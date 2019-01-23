@@ -113,7 +113,7 @@ In the next chapter you'll see that you could move cards among decks, players an
 
 ```javascript
 let deck = Cardamom.CreateDeck(4, 13);
-let player = Cardamom.CreateTable(deck);
+let table = Cardamom.CreateTable(deck);
 ```
 
 ## Manipulation
